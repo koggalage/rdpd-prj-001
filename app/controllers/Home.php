@@ -3,7 +3,7 @@
 /**
  * home class
  */
-class Home
+class Home extends Controller
 {
 	
 	//function __construct()
@@ -13,16 +13,10 @@ class Home
 
 	public function index()
 	{
-		echo('Home View Page');
-	}
+		//echo('Home View Page');
 
-	public function edit()
-	{
-		echo('Home Editing ');
-	}
+		$data['title'] = "Home";
 
-	public function delete($id)
-	{
-		echo('Home Deleting '.$id);
+		$this->view('home', $data);
 	}
 }
