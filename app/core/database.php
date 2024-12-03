@@ -14,11 +14,33 @@ class Database
 
 	}
 
-	public function query()
+	public function query($query,$data = [],$type = 'object')
 	{
 		$con = $this->connect();
-        //var_dump($con);
-        show($con);
+
+		$stm = $con->prepare($query);
+		if($stm)
+		{
+			$check = $stm->execute($data);
+			if($check)
+			{
+				$type = PDO::FETCH_OBJ;
+				if($type != 'object')
+				{
+					$type = PDO::FETCH_ASSOC; //Array
+				}
+
+				$result = $stm->fetchAll($type);
+
+				if(is_array($result) && count($result) > 0)
+				{
+					return $result;
+				}
+			}
+		}
+
+		return false;
 	}
+
 	
 }
