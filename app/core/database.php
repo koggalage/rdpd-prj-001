@@ -24,13 +24,10 @@ class Database
 			$check = $stm->execute($data);
 			if($check)
 			{
-				if($type != 'object')
-				{
-					$type = PDO::FETCH_ASSOC; //Array
-				}else	
-				{
+				if($type == 'object')
 					$type = PDO::FETCH_OBJ;
-				}
+				else	
+					$type = PDO::FETCH_ASSOC; //Array
 
 				$result = $stm->fetchAll($type);
 

@@ -19,6 +19,9 @@ if ($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBPASS', '');
 	define('DBDRIVER', 'mysql');
 
+	//root path
+	define('ROOT', 'http://localhost/udemy/public');
+
 } else
 {
 	//database config for live server
