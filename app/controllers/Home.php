@@ -15,9 +15,10 @@ class Home extends Controller
 	{
 		//echo('Home View Page');
 
-		$db = new Database();
-		$db->query();
-
+		//$db = new Database();
+		//$db->create_tables();
+		//$res = $db->query("select * from users", [], 'array');
+        //show($res);
 
 		$data['title'] = "Home";
 
