@@ -33,15 +33,13 @@ class User extends Model
         $this->errors['lastname'] = "A last name is required";
     }
 
-    $query = "select * from users where email = :email limit 1";
-
     // Validate email
     if (!filter_var($data["email"], FILTER_VALIDATE_EMAIL)) {
         $this->errors['email'] = "Email is not valid";
     }
-    else if ( $this->query($query, ['email'=>$data['email']]) ) 
+    else if ( $this->where(['email'=>$data['email']]) ) 
     { // Check if 'email' exists
-        $this->errors['password'] = "That email already exists";
+        $this->errors['email'] = "That email already exists";
     }
 
     // Validate password

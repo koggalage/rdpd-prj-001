@@ -25,4 +25,31 @@ class Model extends Database
 
 	$this->query($query, $data);
 }
+
+public function where($data)
+	{
+
+		$keys = array_keys($data);
+
+		$query = "select * from ".$this->table." where ";
+
+		foreach ($keys as $key) {
+			$query .= $key . "=:" . $key . " && ";
+		}
+ 
+ 		$query = trim($query,"&& ");
+
+		//echo $query;die;
+
+		$res = $this->query($query,$data);
+
+		if(is_array($res))
+		{
+			return $res;
+		}
+
+		return false;
+
+	}
+
 }
