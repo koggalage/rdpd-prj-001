@@ -52,4 +52,29 @@ public function where($data)
 
 	}
 
+	public function first($data)
+	{
+
+		$keys = array_keys($data);
+
+		$query = "select * from ".$this->table." where ";
+
+		foreach ($keys as $key) {
+			$query .= $key . "=:" . $key . " && ";
+		}
+ 
+ 		$query = trim($query,"&& ");
+ 		$query .= " order by id desc limit 1";
+
+		$res = $this->query($query,$data);
+
+		if(is_array($res))
+		{
+			return $res[0];
+		}
+
+		return false;
+
+	}
+
 }
